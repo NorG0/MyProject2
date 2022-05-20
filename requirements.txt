@@ -1,2 +1,11 @@
 numpy==1.22.3
 opencv-python==4.5.5.64
+pandas
+turtle
+os
+PIL
+subprocess
+plotly.graph_objects
+plotly.express
+hashlib
+sqlite3
