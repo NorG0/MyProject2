@@ -6,5 +6,4 @@ import plotly.express as px
 
 
 st.write("asd")
-window = st.slinder("forcast")
-st.write(m.run(window=window))
+
