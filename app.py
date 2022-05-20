@@ -1,11 +1,11 @@
 
-from turtle import width
+
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 from PIL import Image
-import subprocess
+
 
 # Security
 #passlib,hashlib,bcrypt,scrypt
@@ -40,10 +40,6 @@ def view_all_users():
 	c.execute('SELECT * FROM userstable')
 	data = c.fetchall()
 	return data
-
-# def runmodel():
-# 	cmd = 'python Final_Model.py'
-# 	p = subprocess.Popen(cmd, shell=True)
 
 
 """Simple Login App"""
@@ -135,8 +131,6 @@ elif choice == "Login":
                 elif task == "Manage":
                     if st.button("Run Model"):
                         st.info("Model is running")
-                        cmd = 'python Final_Model.py'
-                        subprocess.Popen(cmd, shell=True)
                         
                 elif task == "Profiles":
                     st.subheader("User Profiles")
