@@ -6,4 +6,3 @@ requests
 streamlit==1.9.0
 Pillow
 
-python==3.9.7
