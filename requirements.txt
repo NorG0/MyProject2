@@ -1,10 +1,7 @@
 numpy==1.22.3
 opencv-python==4.5.5.64
 pandas
-turtle
-os
-PIL
-plotly.graph_objects
-plotly.express
-hashlib
-sqlite3
+plotly
+python_dateutil
+requests
+streamlit=1.9.0
