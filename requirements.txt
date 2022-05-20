@@ -6,3 +6,4 @@ requests
 streamlit==1.9.0
 Pillow
 hashlib
+python==3.9.7
