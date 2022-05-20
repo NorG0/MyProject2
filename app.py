@@ -60,8 +60,8 @@ if choice == "Home":
 elif choice == "Login":
     st.subheader("Chào Mừng Trở Lại Ca Làm Việc")
     st.markdown("Vui Lòng Đăng Nhập")
-    image = Image.open('signin.jpg')
-    st.image(image)
+    image1 = Image.open('signin.jpg')
+    st.image(image1)
 
 
     username = st.sidebar.text_input("User Name")
