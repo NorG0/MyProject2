@@ -4,4 +4,4 @@ pandas
 plotly
 python_dateutil
 requests
-streamlit=1.9.0
+streamlit==1.9.0
