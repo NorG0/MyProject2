@@ -4,7 +4,6 @@ pandas
 turtle
 os
 PIL
-subprocess
 plotly.graph_objects
 plotly.express
 hashlib
