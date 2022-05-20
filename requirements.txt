@@ -6,4 +6,4 @@ python_dateutil
 requests
 streamlit==1.9.0
 Pillow
-sqlite3
+sqlite
