@@ -1,3 +1,5 @@
+
+from turtle import width
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
@@ -17,15 +19,15 @@ def check_hashes(password,hashed_text):
 	return False
 # DB Management
 import sqlite3 
-conn = sqlite3.connect('data.db')
+conn = sqlite3.connect('data4.db')
 c = conn.cursor()
 # DB  Functions
 def create_usertable():
-	c.execute('CREATE TABLE IF NOT EXISTS userstable(username TEXT,password TEXT)')
+	c.execute('CREATE TABLE IF NOT EXISTS userstable(username TEXT,password TEXT, sex TEXT, name TEXT, age TEXT, time TEXT)')
 
 
-def add_userdata(username,password):
-	c.execute('INSERT INTO userstable(username,password) VALUES (?,?)',(username,password))
+def add_userdata(username,password,sex,name,age,time):
+	c.execute('INSERT INTO userstable(username,password,sex,name,age,time) VALUES (?,?,?,?,?,?)',(username,password,sex,name,age,time))
 	conn.commit()
 
 def login_user(username,password):
@@ -39,6 +41,12 @@ def view_all_users():
 	data = c.fetchall()
 	return data
 
+# def runmodel():
+# 	cmd = 'python Final_Model.py'
+# 	p = subprocess.Popen(cmd, shell=True)
+
+
+"""Simple Login App"""
 
 st.title("HOẠT ĐỘNG LÀM VIỆC")
 
@@ -48,7 +56,10 @@ choice = st.sidebar.selectbox("Menu",menu)
 if choice == "Home":
     image = Image.open('crashier.jpg')
     st.image(image)
-    
+
+    st.subheader('Báo cáo hoạt động làm việc hằng ngày của nhân viên')	
+    image = Image.open('mag.jpg')
+    st.image(image,width=200)
 
 elif choice == "Login":
     st.subheader("Chào Mừng Trở Lại Ca Làm Việc")
@@ -70,14 +81,12 @@ elif choice == "Login":
             file = open ('user.txt','w')
             file.write(username)
             task = st.selectbox("Task",["Dashboard","Profiles","Manage"])
-            if username == "norg":
-                st.subheader("Thông tin nhân viên")
-                st.markdown("Tên: Hoàng Nam Hội")
-                st.markdown("Giới Tính: Nam")
-                st.markdown("Tuổi: 18")
-                st.markdown("Ca làm việc: Sáng ")
-                image = Image.open('male.jpg')
-                st.image(image,width=300)
+            image = Image.open('male.jpg')
+            # st.write('Tên nhân viên: ',new_name)
+            # st.write('Giới tính: ',new_sex)
+            # st.write('Ca làm việc: ',new_time)
+            st.image(image)
+            
 
             if username == "admin":	
                 if task == "Dashboard":
@@ -132,7 +141,7 @@ elif choice == "Login":
                 elif task == "Profiles":
                     st.subheader("User Profiles")
                     user_result = view_all_users()
-                    clean_db = pd.DataFrame(user_result,columns=["Username","Password"])
+                    clean_db = pd.DataFrame(user_result,columns=["Username","Password","Sex","Name","Age","Time"])
                     st.dataframe(clean_db)
         else:
             st.warning("Incorrect Username/Password")
@@ -141,10 +150,14 @@ elif choice == "SignUp":
     st.subheader("Create New Account")
     new_user = st.text_input("Username")
     new_password = st.text_input("Password",type='password')
+    new_sex = st.selectbox('Chọn giới tính', ('Không xác định','Nam','Nữ'))
+    new_name = st.text_input("Tên đầy đủ:")
+    new_age = st.number_input("Tuổi của bạn",min_value=16,max_value=35,value=16)
+    new_time = st.selectbox('Chọn Ca làm việc',('Chọn','Sáng','Chiều'))
 
     if st.button("Signup"):
         create_usertable()
-        add_userdata(new_user,make_hashes(new_password))
+        add_userdata(new_user,make_hashes(new_password),new_sex,new_name,new_age,new_time)
         st.success("You have successfully created a valid Account")
         st.info("Go to Login Menu to login")
 
