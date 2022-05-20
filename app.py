@@ -1,12 +1,12 @@
-from turtle import width
+
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
-import difflib
-from os import write
+
+
 from PIL import Image
-import subprocess
+
 
 # Security
 #passlib,hashlib,bcrypt,scrypt
@@ -136,8 +136,8 @@ def main():
 					elif task == "Manage":
 						if st.button("Run Model"):
 							st.info("Model is running")
-							cmd = 'python Final_Model.py'
-							subprocess.Popen(cmd, shell=True)
+# 							cmd = 'python Final_Model.py'
+# 							subprocess.Popen(cmd, shell=True)
 							
 					elif task == "Profiles":
 						st.subheader("User Profiles")
